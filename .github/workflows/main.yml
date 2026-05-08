@@ -14,18 +14,21 @@ jobs:
         with:
           channel: 'stable'
 
+      - name: Force Accept Licenses
+        run: yes | flutter doctor --android-licenses
+
       - name: Setup Config
         run: |
           mkdir -p android/app
           echo "sdk.dir=$ANDROID_SDK_ROOT" > android/local.properties
           echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > android/app/google-services.json
 
-      - name: Build
+      - name: Build APK
         run: |
           flutter pub get
           flutter build apk --release --no-tree-shake-icons
 
-      - name: Upload
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: release-apk
