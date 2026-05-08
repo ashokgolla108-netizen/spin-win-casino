@@ -19,7 +19,10 @@ jobs:
           flutter-version: '3.19.0'
           channel: 'stable'
 
-      # This creates the file that stops "Exit Code 1" errors
+      # NEW: This accepts the licenses to stop the build from crashing
+      - name: Accept Android Licenses
+        run: yes | flutter doctor --android-licenses
+
       - name: Create local.properties
         run: echo "sdk.dir=$ANDROID_SDK_ROOT" > android/local.properties
 
