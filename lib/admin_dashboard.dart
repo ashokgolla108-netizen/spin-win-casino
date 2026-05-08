@@ -9,7 +9,7 @@ class AdminDashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Admin Control Panel"),
+        title: const Text("Casino Admin"),
         backgroundColor: Colors.amber,
         actions: [
           IconButton(
@@ -26,11 +26,11 @@ class AdminDashboard extends StatelessWidget {
           return ListView.builder(
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (context, index) {
-              var user = snapshot.data!.docs[index];
+              var userData = snapshot.data!.docs[index];
               return ListTile(
-                title: Text(user['email'] ?? 'Unknown User'),
-                subtitle: Text("Role: ${user['role']}"),
-                leading: const Icon(Icons.person),
+                title: Text(userData['email'] ?? 'No Email'),
+                subtitle: Text("Role: ${userData['role']}"),
+                leading: const Icon(Icons.person_pin),
               );
             },
           );
